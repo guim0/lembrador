@@ -1,8 +1,13 @@
-## Hello, Welcome to Lembrador the reminder app..
+# A Project developed with React Native.
+
+![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
 ### About
 
-This project is about the hard times people with ADHD have to remind some events or something
+App name is "Lembrador" in english is "Reminder",
+this project is about the hard times people with ADHD have to remind some events or something.
+
+And is all made by myself, the design and code.
 
 ### How to run
 
@@ -20,6 +25,14 @@ This project is about the hard times people with ADHD have to remind some events
 
 ---
 
-### Figma
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 - [Design is here](https://www.figma.com/file/RSzZQtsk9y01CUp05LllLU/Lembrador?node-id=2%3A821&t=BXN8hNtQFRQGkzne-0)
+
+---
+
+### Want to talk to me?
+
+![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)
+
+- [Click Here](https://www.linkedin.com/in/guim0-dev/)
