@@ -17,3 +17,9 @@ This project is about the hard times people with ADHD have to remind some events
 - [React Native](https://reactnative.dev/)
 - [Expo](https://docs.expo.dev/)
 - [Expo Router](https://expo.github.io/router/docs)
+
+---
+
+### Figma
+
+- [Design is here](https://www.figma.com/file/RSzZQtsk9y01CUp05LllLU/Lembrador?node-id=2%3A821&t=BXN8hNtQFRQGkzne-0)
