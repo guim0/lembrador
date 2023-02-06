@@ -1,10 +1,9 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import { ButtonWithIcon } from "../src/components/ButtonWithIcon";
-import { useFonts } from "expo-font";
-import { Link } from "expo-router";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 
-export default function Page() {
+import { useFonts } from "expo-font";
+
+export default function Page({ navigation }) {
   let [fontsLoaded] = useFonts({
     OswaldLight: require("../src/assets/fonts/Oswald-Light.ttf"),
     OswaldMedium: require("../src/assets/fonts/Oswald-Medium.ttf"),
@@ -18,19 +17,17 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Text style={styles.title}>
-          Irei te auxiliar com seus compromissos e responsabilidades,
-        </Text>
+        <Button title="Go back to" onPress={() => navigation.goBack()} />
 
-        <Text style={styles.subtitle}>
-          sou <Text style={{ color: "#17BEBB" }}>Lembrador</Text>
+        <Text style={styles.title}>
+          <Text style={{ color: "#17BEBB" }}>Lembrador</Text> é um parceiro de
+          trabalho, um colega de faculdade e um facilitador.
         </Text>
 
         <Image
-          source={require("../src/assets/access.png")}
+          source={require("../src/assets/onboarding1.png")}
           style={styles.image}
         />
-        <ButtonWithIcon title="Iniciar" />
       </View>
     </View>
   );
@@ -53,13 +50,10 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "#FFFFFF",
   },
-  subtitle: {
-    color: "#FFFFFF",
-    fontSize: 36,
-  },
+
   image: {
     alignSelf: "center",
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 200,
   },
 });

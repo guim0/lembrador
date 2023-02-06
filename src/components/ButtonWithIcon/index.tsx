@@ -1,3 +1,5 @@
+import { Link } from "expo-router";
+
 import {
   Image,
   ImageSourcePropType,
@@ -13,20 +15,24 @@ interface IButtonWithIcon {
 
 export const ButtonWithIcon = (props: IButtonWithIcon) => {
   return (
-    <Pressable style={styles.button}>
-      <Text style={styles.title}> {props.title}</Text>
-
-      <View style={styles.icon}>
-        <Image
-          source={require("../../assets/icons/next.png")}
-          style={{ width: 6, height: 10 }}
-        />
-      </View>
-    </Pressable>
+    <Link style={styles.container} href="/onboarding" asChild>
+      <Pressable style={styles.button}>
+        <Text style={styles.title}> {props.title}</Text>
+        <View style={styles.icon}>
+          <Image
+            source={require("../../assets/icons/next.png")}
+            style={{ width: 6, height: 10 }}
+          />
+        </View>
+      </Pressable>
+    </Link>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    maxWidth: 200,
+  },
   button: {
     borderRadius: 10,
     width: 150,
