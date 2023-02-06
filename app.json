@@ -1,6 +1,11 @@
 {
   "expo": {
     "scheme": "acme",
-    "web": { "bundler": "metro" }
+    "web": { "bundler": "metro" },
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1C1C1C"
+    }
   }
 }
