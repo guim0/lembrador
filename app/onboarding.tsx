@@ -41,6 +41,8 @@ export default function OnboardingPage() {
     <Onboarding
       onSkip={() => router.push("/form")}
       onDone={() => router.push("/form")}
+      skipLabel={"Pular"}
+      nextLabel={"Próximo"}
       pages={[
         {
           title: onboardingOne,

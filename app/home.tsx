@@ -1,16 +1,25 @@
 import { useContext } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { UserContext } from "../src/context/userProvider";
 import React from "react";
 
 export default function Home() {
   const { name } = useContext(UserContext);
+
+  let today = new Date();
+  const formatDay = today.toLocaleDateString();
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Olá, {name}</Text>
+      <Text style={styles.today}>{formatDay}</Text>
+      <View style={styles.header}>
+        <Text style={styles.simpleText}>Olá, Guilherme</Text>
+        <Image
+          style={styles.userPic}
+          source={require("../src/assets/me.jpeg")}
+        />
       </View>
+      <View style={styles.container}></View>
     </SafeAreaView>
   );
 }
@@ -30,5 +39,30 @@ const styles = StyleSheet.create({
     fontFamily: "OswaldRegular",
     fontSize: 28,
     textAlign: "center",
+  },
+  simpleText: {
+    color: "#ffffff",
+    fontFamily: "OswaldRegular",
+    fontSize: 24,
+  },
+  today: {
+    color: "#ffffff",
+    fontFamily: "OswaldRegular",
+    fontSize: 18,
+    textAlign: "left",
+    marginHorizontal: 20,
+    marginTop: 15,
+  },
+  header: {
+    marginHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+  },
+  userPic: {
+    width: 50,
+    height: 50,
+    borderRadius: 100,
+    marginHorizontal: 15,
   },
 });

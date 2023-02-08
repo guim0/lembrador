@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useContext, useState } from "react";
 import {
   Image,
@@ -32,12 +33,21 @@ export default function Form() {
   const [pressed, setPressed] = useState<string>();
   const [userName, setUserName] = useState<string>("");
   const [userSurname, setUserSurname] = useState<string>("");
+  const [userRole, setUserRole] = useState("");
   const { name, setName, surname, setSurname, setRole, role } =
     useContext(UserContext);
+  const router = useRouter();
 
   function handlePressedRole(role) {
     setPressed(role);
     setRole(role);
+    setUserRole(role);
+  }
+  function handleSubmit(values: { name: string; surname: string }) {
+    console.log(values);
+    setName(values.name);
+    setSurname(values.surname);
+    router.push("/home");
   }
 
   const RoleButton = ({ item, onPress }: IRolesButton) => {
@@ -65,12 +75,12 @@ export default function Form() {
     <ScrollView style={styles.safeView}>
       <View style={styles.container}>
         <Text style={styles.title}>Insira alguns dados.</Text>
-
+        {console.log(userName, userRole)}
         <View style={styles.form}>
           <Text style={styles.label}>Qual seu nome?</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(value) => setName(value)}
+            onChangeText={(value) => setUserName(value)}
             placeholder="Peter"
             placeholderTextColor="#575757"
             keyboardType="default"
@@ -79,7 +89,7 @@ export default function Form() {
           <Text style={styles.label}>Qual seu sobrenome?</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(value) => setSurname(value)}
+            onChangeText={(value) => setUserSurname(value)}
             placeholder="Parker"
             placeholderTextColor="#575757"
             keyboardType="default"
@@ -113,7 +123,11 @@ export default function Form() {
             para cadastrar seus compromissos
           </Text>
         </View>
-        <ButtonWithIcon href="/home" title="Iniciar" />
+        <ButtonWithIcon
+          href="/home"
+          title="Iniciar"
+          onPress={() => handleSubmit}
+        />
       </View>
     </ScrollView>
   );
@@ -137,7 +151,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   help: {
-    marginTop: 10,
     color: "#ffffff",
     fontFamily: "OswaldRegular",
     fontSize: 28,
@@ -182,7 +195,7 @@ const styles = StyleSheet.create({
   },
 
   toolkit: {
-    marginVertical: 20,
+    marginTop: 20,
     alignSelf: "center",
     alignItems: "center",
     borderColor: "#0077B6",
