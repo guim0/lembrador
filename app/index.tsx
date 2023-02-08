@@ -2,7 +2,6 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { ButtonWithIcon } from "../src/components/ButtonWithIcon";
 import { useFonts } from "expo-font";
-import { Link } from "expo-router";
 
 export default function Page() {
   let [fontsLoaded] = useFonts({
@@ -29,8 +28,9 @@ export default function Page() {
         <Image
           source={require("../src/assets/access.png")}
           style={styles.image}
+          fadeDuration={3}
         />
-        <ButtonWithIcon title="Iniciar" />
+        <ButtonWithIcon href="/onboarding" title="Iniciar" />
       </View>
     </View>
   );

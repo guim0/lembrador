@@ -11,11 +11,12 @@ import {
 
 interface IButtonWithIcon {
   title: string;
+  href: string;
 }
 
 export const ButtonWithIcon = (props: IButtonWithIcon) => {
   return (
-    <Link style={styles.container} href="/onboarding" asChild>
+    <Link style={styles.container} href={props.href} asChild>
       <Pressable style={styles.button}>
         <Text style={styles.title}> {props.title}</Text>
         <View style={styles.icon}>

@@ -71,7 +71,7 @@ export default function OnboardingPage() {
 const styles = StyleSheet.create({
   titleText: {
     padding: 20,
-    fontSize: 40,
+    fontSize: 35,
     color: "#FFFFFF",
     textAlign: "center",
   },
