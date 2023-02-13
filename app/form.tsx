@@ -75,7 +75,7 @@ export default function Form() {
     <ScrollView style={styles.safeView}>
       <View style={styles.container}>
         <Text style={styles.title}>Insira alguns dados.</Text>
-        {console.log(userName, userRole)}
+
         <View style={styles.form}>
           <Text style={styles.label}>Qual seu nome?</Text>
           <TextInput

@@ -11,7 +11,17 @@ export default function Page() {
   });
 
   if (!fontsLoaded) {
-    return <Text>Carregando</Text>;
+    return (
+      <View style={{ flex: 1, backgroundColor: "#1C1C1C" }}>
+        <Text
+          style={{
+            fontFamily: "OswaldRegular",
+          }}
+        >
+          Carregando
+        </Text>
+      </View>
+    );
   }
 
   return (

@@ -22,6 +22,7 @@ And is all made by myself, the design and code.
 - [React Native](https://reactnative.dev/)
 - [Expo](https://docs.expo.dev/)
 - [Expo Router](https://expo.github.io/router/docs)
+- [React Native Calendars](https://wix.github.io/react-native-calendars/)
 
 ---
 

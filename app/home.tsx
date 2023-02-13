@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { UserContext } from "../src/context/userProvider";
-import React from "react";
 
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 export default function Home() {
   const { name } = useContext(UserContext);
 
@@ -19,7 +19,23 @@ export default function Home() {
           source={require("../src/assets/me.jpeg")}
         />
       </View>
-      <View style={styles.container}></View>
+      <View style={styles.container}>
+        <Text style={styles.yourMonth}>Este é o seu mês</Text>
+
+        <Calendar
+          style={{ borderRadius: 10, padding: 10 }}
+          theme={{
+            calendarBackground: "#212A2D",
+            backgroundColor: "#212A2D",
+            monthTextColor: "#FFFFFF",
+            todayBackgroundColor: "#0077B6",
+            textDayFontFamily: "OswaldLight",
+            textDayFontSize: 18,
+            textInactiveColor: "#06ee4b",
+            textSectionTitleColor: "red",
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -46,7 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   today: {
-    color: "#ffffff",
+    color: "#D9DCDE",
     fontFamily: "OswaldRegular",
     fontSize: 18,
     textAlign: "left",
@@ -64,5 +80,13 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 100,
     marginHorizontal: 15,
+  },
+
+  yourMonth: {
+    marginVertical: 24,
+    fontFamily: "OswaldRegular",
+    color: "#ffffff",
+    textAlign: "center",
+    fontSize: 24,
   },
 });
