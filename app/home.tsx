@@ -33,7 +33,7 @@ export default function Home() {
     {
       day: "05/03",
       hour: "09:00",
-      title: "Consulta",
+      title: "Aniversario de Izabela R.Gutierrez",
       status: "done",
     },
     {
