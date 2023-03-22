@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import {
   Image,
   Pressable,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,7 +10,6 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ButtonWithIcon } from "../src/components/ButtonWithIcon";
-import { UserContext, UserContextProvider } from "../src/context/userProvider";
 
 interface ItemData {
   role: string;
@@ -31,46 +29,14 @@ interface IRolesButton {
 
 export default function Form() {
   const [pressed, setPressed] = useState<string>();
-  const [userName, setUserName] = useState<string>("");
-  const [userSurname, setUserSurname] = useState<string>("");
-  const [userRole, setUserRole] = useState("");
-  const { name, setName, surname, setSurname, setRole, role } =
-    useContext(UserContext);
+
   const router = useRouter();
 
-  function handlePressedRole(role) {
-    setPressed(role);
-    setRole(role);
-    setUserRole(role);
-  }
   function handleSubmit(values: { name: string; surname: string }) {
     console.log(values);
-    setName(values.name);
-    setSurname(values.surname);
     router.push("/home");
   }
 
-  const RoleButton = ({ item, onPress }: IRolesButton) => {
-    return (
-      <Pressable
-        onPress={onPress}
-        style={
-          pressed !== item.role ? styles.roleButton : styles.roleButtonActive
-        }
-      >
-        <Text
-          style={{
-            color: "#ffffff",
-            fontFamily: "OswaldLight",
-            fontSize: 17,
-            margin: 0,
-          }}
-        >
-          {item?.title}
-        </Text>
-      </Pressable>
-    );
-  };
   return (
     <ScrollView style={styles.safeView}>
       <View style={styles.container}>
@@ -80,7 +46,6 @@ export default function Form() {
           <Text style={styles.label}>Qual seu nome?</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(value) => setUserName(value)}
             placeholder="Peter"
             placeholderTextColor="#575757"
             keyboardType="default"
@@ -89,7 +54,6 @@ export default function Form() {
           <Text style={styles.label}>Qual seu sobrenome?</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(value) => setUserSurname(value)}
             placeholder="Parker"
             placeholderTextColor="#575757"
             keyboardType="default"
@@ -107,11 +71,26 @@ export default function Form() {
           }}
         >
           {roles.map((item: ItemData, index) => (
-            <RoleButton
+            <Pressable
               key={index}
-              item={item}
-              onPress={() => handlePressedRole(item.role)}
-            />
+              onPress={() => setPressed(item.role)}
+              style={
+                pressed !== item.role
+                  ? styles.roleButton
+                  : styles.roleButtonActive
+              }
+            >
+              <Text
+                style={{
+                  color: "#ffffff",
+                  fontFamily: "OswaldLight",
+                  fontSize: 17,
+                  margin: 0,
+                }}
+              >
+                {item?.title}
+              </Text>
+            </Pressable>
           ))}
         </View>
         <View style={styles.toolkit}>
