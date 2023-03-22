@@ -106,8 +106,9 @@ export default function Form() {
             marginTop: 15,
           }}
         >
-          {roles.map((item: ItemData) => (
+          {roles.map((item: ItemData, index) => (
             <RoleButton
+              key={index}
               item={item}
               onPress={() => handlePressedRole(item.role)}
             />

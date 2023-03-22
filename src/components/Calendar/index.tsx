@@ -8,8 +8,9 @@ export const DateManager = () => {
         dayTextColor: "white",
         monthTextColor: "white",
         calendarBackground: "#212A2D",
-        todayBackgroundColor: "#0077B6",
+
         todayButtonPosition: "center",
+        todayDotColor: "#0077B6",
         textDayFontFamily: "OswaldLight",
         textMonthFontSize: 16,
         todayButtonFontSize: 12,

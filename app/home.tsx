@@ -35,13 +35,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
-  title: {
-    marginTop: 30,
-    color: "#ffffff",
-    fontFamily: "OswaldRegular",
-    fontSize: 28,
-    textAlign: "center",
-  },
+
   simpleText: {
     color: "#ffffff",
     fontFamily: "OswaldRegular",
