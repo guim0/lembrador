@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { UserContext } from "../src/context/userProvider";
+import { DateManager } from "../src/components/Calendar";
 
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 export default function Home() {
-  const { name } = useContext(UserContext);
-
   let today = new Date();
   const formatDay = today.toLocaleDateString();
+
   return (
     <SafeAreaView style={styles.safeView}>
       <Text style={styles.today}>{formatDay}</Text>
@@ -22,19 +20,7 @@ export default function Home() {
       <View style={styles.container}>
         <Text style={styles.yourMonth}>Este é o seu mês</Text>
 
-        <Calendar
-          style={{ borderRadius: 10, padding: 10 }}
-          theme={{
-            calendarBackground: "#212A2D",
-            backgroundColor: "#212A2D",
-            monthTextColor: "#FFFFFF",
-            todayBackgroundColor: "#0077B6",
-            textDayFontFamily: "OswaldLight",
-            textDayFontSize: 18,
-            textInactiveColor: "#06ee4b",
-            textSectionTitleColor: "red",
-          }}
-        />
+        <DateManager />
       </View>
     </SafeAreaView>
   );
