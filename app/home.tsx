@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Button } from "../src/components/Button";
+
 import { DateManager } from "../src/components/Calendar";
 import CardReminder, { ICardRemind } from "../src/components/CardReminder";
 
@@ -52,6 +54,7 @@ export default function Home() {
           source={require("../src/assets/user.jpeg")}
         />
       </View>
+
       <ScrollView style={styles.container}>
         <Text style={styles.yourMonth}>Este é o seu mês</Text>
 
@@ -62,6 +65,7 @@ export default function Home() {
         {mockedReminders.map((items, index) => (
           <CardReminder key={index} {...items} />
         ))}
+        <Button href="/" title="Novo Evento" size={300} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -73,7 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingVertical: 10,
+    marginVertical: 20,
     paddingHorizontal: 20,
   },
 
