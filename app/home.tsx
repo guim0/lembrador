@@ -1,11 +1,46 @@
 import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DateManager } from "../src/components/Calendar";
+import CardReminder, { ICardRemind } from "../src/components/CardReminder";
 
 export default function Home() {
   let today = new Date();
   const formatDay = today.toLocaleDateString();
+
+  const mockedReminders: ICardRemind[] = [
+    {
+      day: "21/01",
+      hour: "20:20",
+      title: "Aniversário de Caio F.Pimentel",
+      status: "done",
+    },
+    {
+      day: "10/02",
+      hour: "12:00",
+      title: "Exercicios: Engenharia da computação",
+      status: "done",
+    },
+    {
+      day: "03/03",
+      hour: "15:00",
+      title: "Pagar contas",
+      status: "done",
+    },
+    {
+      day: "05/03",
+      hour: "09:00",
+      title: "Consulta",
+      status: "done",
+    },
+    {
+      day: "24/07",
+      hour: "09:00",
+      title: "Aniversario",
+      status: "coming",
+    },
+  ];
 
   return (
     <SafeAreaView style={styles.safeView}>
@@ -14,14 +49,20 @@ export default function Home() {
         <Text style={styles.simpleText}>Olá, Guilherme</Text>
         <Image
           style={styles.userPic}
-          source={require("../src/assets/me.jpeg")}
+          source={require("../src/assets/user.jpeg")}
         />
       </View>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.yourMonth}>Este é o seu mês</Text>
 
         <DateManager />
-      </View>
+
+        <Text style={styles.yourReminders}>Seus lembretes</Text>
+
+        {mockedReminders.map((items, index) => (
+          <CardReminder key={index} {...items} />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -63,6 +104,14 @@ const styles = StyleSheet.create({
   },
 
   yourMonth: {
+    marginVertical: 24,
+    fontFamily: "OswaldRegular",
+    color: "#ffffff",
+    textAlign: "center",
+    fontSize: 24,
+  },
+
+  yourReminders: {
     marginVertical: 24,
     fontFamily: "OswaldRegular",
     color: "#ffffff",
