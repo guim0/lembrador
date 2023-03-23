@@ -6,11 +6,14 @@ import { Button } from "../src/components/Button";
 
 import { DateManager } from "../src/components/Calendar";
 import CardReminder, { ICardRemind } from "../src/components/CardReminder";
+import { UserContext, UserContextProvider } from "../src/context";
 
 export default function Home() {
   let today = new Date();
-  const formatDay = today.toLocaleDateString();
+  const formatDay = today.toLocaleDateString("pt-BR");
 
+  const { data } = useContext(UserContext);
+  console.log(data);
   const mockedReminders: ICardRemind[] = [
     {
       day: "21/01",
@@ -45,29 +48,31 @@ export default function Home() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeView}>
-      <Text style={styles.today}>{formatDay}</Text>
-      <View style={styles.header}>
-        <Text style={styles.simpleText}>Olá, Guilherme</Text>
-        <Image
-          style={styles.userPic}
-          source={require("../src/assets/user.jpeg")}
-        />
-      </View>
+    <UserContextProvider>
+      <SafeAreaView style={styles.safeView}>
+        <Text style={styles.today}>{formatDay}</Text>
+        <View style={styles.header}>
+          <Text style={styles.simpleText}>Olá, {data.name}</Text>
+          <Image
+            style={styles.userPic}
+            source={require("../src/assets/user.jpeg")}
+          />
+        </View>
 
-      <ScrollView style={styles.container}>
-        <Text style={styles.yourMonth}>Este é o seu mês</Text>
+        <ScrollView style={styles.container}>
+          <Text style={styles.yourMonth}>Este é o seu mês</Text>
 
-        <DateManager />
+          <DateManager />
 
-        <Text style={styles.yourReminders}>Seus lembretes</Text>
+          <Text style={styles.yourReminders}>Seus lembretes</Text>
 
-        {mockedReminders.map((items, index) => (
-          <CardReminder key={index} {...items} />
-        ))}
-        <Button href="/" title="Novo Evento" size={300} />
-      </ScrollView>
-    </SafeAreaView>
+          {mockedReminders.map((items, index) => (
+            <CardReminder key={index} {...items} />
+          ))}
+          <Button href="/" title="Novo Evento" size={300} />
+        </ScrollView>
+      </SafeAreaView>
+    </UserContextProvider>
   );
 }
 

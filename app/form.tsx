@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ButtonWithIcon } from "../src/components/ButtonWithIcon";
+import { UserContext, UserContextProvider } from "../src/context";
 
 interface ItemData {
   role: string;
@@ -22,94 +23,105 @@ const roles: ItemData[] = [
   { title: "Pessoal", role: "personal" },
 ];
 
-interface IRolesButton {
-  item: ItemData;
-  onPress: () => void;
-}
-
 export default function Form() {
   const [pressed, setPressed] = useState<string>();
-
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [role, setRole] = useState("");
   const router = useRouter();
+  const { updateData } = useContext(UserContext);
+  function handleRoleSelection(role: string) {
+    setPressed(role);
+    setRole(role);
+  }
 
-  function handleSubmit(values: { name: string; surname: string }) {
+  function handleSubmit(values: {
+    name: string;
+    surname: string;
+    role: string;
+  }) {
     console.log(values);
+    updateData(values);
     router.push("/home");
   }
 
   return (
-    <ScrollView style={styles.safeView}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Insira alguns dados.</Text>
+    <UserContextProvider>
+      <ScrollView style={styles.safeView}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Insira alguns dados.</Text>
 
-        <View style={styles.form}>
-          <Text style={styles.label}>Qual seu nome?</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Peter"
-            placeholderTextColor="#575757"
-            keyboardType="default"
-            keyboardAppearance="dark"
-          />
-          <Text style={styles.label}>Qual seu sobrenome?</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Parker"
-            placeholderTextColor="#575757"
-            keyboardType="default"
-            keyboardAppearance="dark"
-          />
-        </View>
-        <Text style={styles.help}>Precisa de ajuda com?</Text>
-        <View
-          style={{
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            flexDirection: "row",
-            marginTop: 15,
-          }}
-        >
-          {roles.map((item: ItemData, index) => (
-            <Pressable
-              key={index}
-              onPress={() => setPressed(item.role)}
-              style={
-                pressed !== item.role
-                  ? styles.roleButton
-                  : styles.roleButtonActive
-              }
-            >
-              <Text
-                style={{
-                  color: "#ffffff",
-                  fontFamily: "OswaldLight",
-                  fontSize: 17,
-                  margin: 0,
-                }}
+          <View style={styles.form}>
+            <Text style={styles.label}>Qual seu nome?</Text>
+            <TextInput
+              onChangeText={(text) => setName(text)}
+              style={styles.input}
+              placeholder="Peter"
+              placeholderTextColor="#575757"
+              keyboardType="default"
+              keyboardAppearance="dark"
+            />
+            <Text style={styles.label}>Qual seu sobrenome?</Text>
+            <TextInput
+              onChangeText={(text) => setSurname(text)}
+              style={styles.input}
+              placeholder="Parker"
+              placeholderTextColor="#575757"
+              keyboardType="default"
+              keyboardAppearance="dark"
+            />
+          </View>
+          <Text style={styles.help}>Precisa de ajuda com?</Text>
+          <View
+            style={{
+              flexWrap: "wrap",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              flexDirection: "row",
+              marginTop: 15,
+            }}
+          >
+            {roles.map((item: ItemData, index) => (
+              <Pressable
+                key={index}
+                onPress={() => handleRoleSelection(item.role)}
+                style={
+                  pressed !== item.role
+                    ? styles.roleButton
+                    : styles.roleButtonActive
+                }
               >
-                {item?.title}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
-        <View style={styles.toolkit}>
-          <Image
-            source={require("../src/assets/icons/info.png")}
-            style={{ width: 30, height: 30 }}
+                <Text
+                  style={{
+                    color: "#ffffff",
+                    fontFamily: "OswaldLight",
+                    fontSize: 17,
+                    margin: 0,
+                  }}
+                >
+                  {item?.title}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+          <View style={styles.toolkit}>
+            <Image
+              source={require("../src/assets/icons/info.png")}
+              style={{ width: 30, height: 30 }}
+            />
+            <Text style={styles.toolkitText}>
+              Lembre-se, este app irá te ajudar a se organizar, então se esforce
+              para cadastrar seus compromissos
+            </Text>
+          </View>
+          <ButtonWithIcon
+            href="/home"
+            title="Iniciar"
+            onPress={() => handleSubmit({ name, surname, role })}
           />
-          <Text style={styles.toolkitText}>
-            Lembre-se, este app irá te ajudar a se organizar, então se esforce
-            para cadastrar seus compromissos
-          </Text>
         </View>
-        <ButtonWithIcon
-          href="/home"
-          title="Iniciar"
-          onPress={() => handleSubmit}
-        />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </UserContextProvider>
   );
 }
 
