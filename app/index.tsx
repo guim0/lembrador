@@ -8,6 +8,7 @@ export default function Page() {
     OswaldLight: require("../src/assets/fonts/Oswald-Light.ttf"),
     OswaldMedium: require("../src/assets/fonts/Oswald-Medium.ttf"),
     OswaldRegular: require("../src/assets/fonts/Oswald-Regular.ttf"),
+    Poppins: require("../src/assets/fonts/Poppins-Regular.ttf"),
   });
 
   if (!fontsLoaded) {

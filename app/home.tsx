@@ -10,40 +10,44 @@ import { UserContext, UserContextProvider } from "../src/context";
 
 export default function Home() {
   let today = new Date();
-  const formatDay = today.toLocaleDateString("pt-BR");
+
+  const formatDay = today.toLocaleDateString("pt-BR", {
+    localeMatcher: "best fit",
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  });
 
   const { data } = useContext(UserContext);
-  console.log(data);
+
   const mockedReminders: ICardRemind[] = [
     {
-      day: "21/01",
-      hour: "20:20",
-      title: "Aniversário de Caio F.Pimentel",
+      day: "07/06",
+      hour: "00:00",
+      title: "Dia Nacional da Liberdade de Imprensa",
       status: "done",
+      badge: "Feriado",
     },
     {
-      day: "10/02",
-      hour: "12:00",
-      title: "Exercicios: Engenharia da computação",
+      day: "08/06",
+      hour: "00:00",
+      title: "Corpus Christi",
       status: "done",
+      badge: "Feriado",
     },
     {
-      day: "03/03",
-      hour: "15:00",
+      day: "22/06",
+      hour: "11:30",
       title: "Pagar contas",
-      status: "done",
-    },
-    {
-      day: "05/03",
-      hour: "09:00",
-      title: "Aniversario de Izabela R.Gutierrez",
-      status: "done",
+      status: "coming",
+      badge: "Lembrete",
     },
     {
       day: "24/07",
-      hour: "09:00",
-      title: "Aniversario",
+      hour: "00:00",
+      title: "Feliz Aniversário!",
       status: "coming",
+      badge: "Lembrete",
     },
   ];
 
@@ -52,7 +56,7 @@ export default function Home() {
       <SafeAreaView style={styles.safeView}>
         <Text style={styles.today}>{formatDay}</Text>
         <View style={styles.header}>
-          <Text style={styles.simpleText}>Olá, {data.name}</Text>
+          <Text style={styles.simpleText}>Olá, Guilherme</Text>
           <Image
             style={styles.userPic}
             source={require("../src/assets/user.jpeg")}

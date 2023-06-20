@@ -8,6 +8,7 @@ export interface ICardRemind {
   hour: string;
   title: string;
   status: IEventStatus["status"];
+  badge: string;
 }
 export default function CardReminder(props: ICardRemind) {
   return (
@@ -18,6 +19,9 @@ export default function CardReminder(props: ICardRemind) {
         </Text>
         <Line width={90} />
         <Text style={styles.simpleText}>{props.title}</Text>
+        <View style={styles.badge}>
+          <Text style={styles.badgeText}>{props.badge}</Text>
+        </View>
       </View>
 
       <View style={styles.extra}>
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#212A2D",
     maxWidth: 350,
-    height: 100,
+    height: 120,
     borderRadius: 10,
     paddingHorizontal: 15,
     marginVertical: 5,
@@ -53,6 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignSelf: "center",
     height: "80%",
+
     flexDirection: "column",
   },
 
@@ -61,5 +66,19 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     textAlign: "left",
     fontSize: 18,
+  },
+
+  badge: {
+    marginTop: 10,
+    backgroundColor: "#3D87F6",
+    width: 80,
+    height: 20,
+    borderRadius: 10,
+  },
+  badgeText: {
+    textAlign: "center",
+    fontFamily: "Poppins",
+    fontSize: 14,
+    color: "white",
   },
 });
